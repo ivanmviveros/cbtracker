@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "nodemon app.js",
+    "start": "node app.js",
     "dev": "gulp",
     "test": "mocha -R spec ./test/*.js",
     "lint": "eslint ./ || exit 0",

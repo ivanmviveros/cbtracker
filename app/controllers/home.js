@@ -8,7 +8,7 @@ const {
 
 
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
+  res.render('index', { title: 'Crypto Blades Tracker' });
 });
 
 router.get('/account/add/:address', (req, res, next) => {
