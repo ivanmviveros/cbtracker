@@ -66,34 +66,37 @@
                 .chart.chart-sparkline
                   canvas#sparklineChart.chart-canvas
     .row
-  .col-12.col-xl-12
-    .card
-      .card-header
-        .row.align-items-center
-          .col
-            h4.card-header-title
-              | Accounts
-          .col-auto
-            a.btn.btn-sm.btn-white(href='#!' data-toggle='modal' data-target='#modal-add-account' data-backdrop='static' data-keyboard='false')
-              | Add Account
-      .card-body
-        .table-responsive.mb-0
-          table#table-accounts.table.table-sm.table-nowrap.card-table
-            thead
-              tr
-                th.text-white(data-field='address' data-formatter='nameFormatter')
-                  | Name
-                th.text-white(data-field='address')
-                  | Address
-                th.text-white(data-field='characters' data-formatter='charFormatter')
-                  | Characters
-                th.text-white(data-field='unclaimed' data-formatter='currFormatter')
-                  | Unclaimed Skills
-                th.text-white(data-field='rewards' data-formatter='currFormatter')
-                  | Staked Skills
-                th.text-white(data-field='balance' data-formatter='currFormatter')
-                  | Balance
-                th.text-right(data-field='action')
-                  | Action
-            tbody.list
-            
+      .col-12.col-xl-12
+        .card
+          .card-body
+            | Donate: 0x6Ab354dB4C395037Eb723D739Ca4AFFbdA513684
+      .col-12.col-xl-12
+        .card
+          .card-header
+            .row.align-items-center
+              .col
+                h4.card-header-title
+                  | Accounts
+              .col-auto
+                a.btn.btn-sm.btn-white(href='#!' data-toggle='modal' data-target='#modal-add-account' data-backdrop='static' data-keyboard='false')
+                  | Add Account
+          .card-body
+            .table-responsive.mb-0
+              table#table-accounts.table.table-sm.table-nowrap.card-table
+                thead
+                  tr
+                    th.text-white(data-field='address' data-formatter='nameFormatter')
+                      | Name
+                    th.text-white(data-field='address')
+                      | Address
+                    th.text-white(data-field='characters' data-formatter='charFormatter')
+                      | Characters
+                    th.text-white(data-field='unclaimed' data-formatter='currFormatter')
+                      | Unclaimed Skills
+                    th.text-white(data-field='rewards' data-formatter='currFormatter')
+                      | Staked Skills
+                    th.text-white(data-field='balance' data-formatter='currFormatter')
+                      | Balance
+                    th.text-right(data-field='action')
+                      | Action
+                tbody.list  
