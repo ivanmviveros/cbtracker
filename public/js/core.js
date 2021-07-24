@@ -90,7 +90,7 @@ function convertSkill(value) {
 }
 
 function remove(address) {
-    storeAccounts.splice(storeAccounts.indexOf(address), 1);
+    storeAccounts.splice(storeAccounts.indexOf(address), 1)
     delete storeNames[address]
     reload_data()
 }

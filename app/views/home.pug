@@ -1,88 +1,50 @@
-.main-content
-  .header
-    .container-fluid
-      .header-body
-        .row.align-items-end
-          .col
-            h1.header-title
-              | Crypto Blades Tracker
-  .container-fluid
-    .row
-      .col-12.col-lg-6.col-xl
-        .card
-          .card-body
-            .row.align-items-center
-              .col
-                h6.card-title.text-uppercase.text-muted.mb-2
-                  | Total Accounts
-                span#card-acc.h2.mb-0
-                  | 0
-              .col-auto
-                span.h2.fe.fe-dollar-sign.text-muted.mb-0
-      .col-12.col-lg-6.col-xl
-        .card
-          .card-body
-            .row.align-items-center
-              .col
-                h6.card-title.text-uppercase.text-muted.mb-2
-                  | Total Unclaimed Skills
-                span#card-uskills.h2.mb-0
-                  | 0
-              .col-auto
-                span.h2.fe.fe-briefcase.text-muted.mb-0
-      .col-12.col-lg-6.col-xl
-        .card
-          .card-body
-            .row.align-items-center
-              .col
-                h6.card-title.text-uppercase.text-muted.mb-2
-                  | Total Staked Skills
-                span#card-sskills.h2.mb-0
-                  | 0
-              .col-auto
-                span.h2.fe.fe-clipboard.text-muted.mb-0
-      .col-12.col-lg-6.col-xl
-        .card
-          .card-body
-            .row.align-items-center
-              .col
-                h6.card-title.text-uppercase.text-muted.mb-2
-                  | Total Balance
-                span#card-balance.h2.mb-0
-                  | 0
-              .col-auto
-                .chart.chart-sparkline
-                  canvas#sparklineChart.chart-canvas
-      .col-12.col-lg-6.col-xl
-        .card
-          .card-body
-            .row.align-items-center
-              .col
-                h6.card-title.text-uppercase.text-muted.mb-2
-                  | Skill Price
-                span#card-price.h2.mb-0
-                  | 0
-              .col-auto
-                .chart.chart-sparkline
-                  canvas#sparklineChart.chart-canvas
-    .row
-      .col-12.col-xl-12
-        .card
-          .card-body
-            | Donate: 0x6Ab354dB4C395037Eb723D739Ca4AFFbdA513684
-      .col-12.col-xl-12
-        .card
+main.page-wrapper
+  .position-relative.zindex-5.pb-4.mb-md-3.mx-5(style='margin-top: 20px;')
+    .row.mx-n2.py-2
+      .col-md-3.col-sm-6.px-2
+        h1.fs-sm.fw-medium Crypto Blades Tracker
+    .row.mx-n2.py-2
+      .col-md-3.col-sm-6.px-2.mb-3
+        .card.bg-secondary.h-100.rounded-3.p-4.text-center
+          h6.fs-sm.fw-medium.text-muted Total Accounts
+          p#card-acc.h4.mb-2 0
+      .col-md-3.col-sm-6.px-2.mb-3
+        .card.bg-secondary.h-100.rounded-3.p-4.text-center
+          h6.fs-sm.fw-medium.text-muted Total Unclaimed Skills
+          p#card-uskills.h4.mb-2 0
+      .col-md-3.col-sm-6.px-2.mb-3
+        .card.bg-secondary.h-100.rounded-3.p-4.text-center
+          h6.fs-sm.fw-medium.text-muted Total Staked Skills
+          p#card-sskills.h4.mb-2 0
+      .col-md-3.col-sm-6.px-2.mb-3
+        .card.bg-secondary.h-100.rounded-3.p-4.text-center
+          h6.fs-sm.fw-medium.text-muted Total Balance
+          p#card-balance.h4.mb-2 0
+    .row.mx-n2.py-2
+      .col-md-6.col-sm-6.px-2.mb-3
+        .card.bg-secondary
+          .card-body.text-muted
+            | Current Skill Price:&nbsp;
+            span#card-price.text-white 0
+      .col-md-6.col-sm-6.px-2.mb-3
+        .card.bg-secondary
+          .card-body.text-muted
+            | Donate Address:&nbsp;
+            span.text-white 0x6Ab354dB4C395037Eb723D739Ca4AFFbdA513684
+    .row.mx-n2.py-2
+      .col-md-12.col-sm-126.px-2.mb-3
+        .card.bg-secondary
           .card-header
             .row.align-items-center
               .col
                 h4.card-header-title
                   | Accounts
               .col-auto
-                a.btn.btn-sm.btn-white(href='#!' data-toggle='modal' data-target='#modal-add-account' data-backdrop='static' data-keyboard='false')
+                a.btn.btn-sm.btn-danger(href='#!' data-toggle='modal' data-target='#modal-add-account' data-backdrop='static' data-keyboard='false')
                   | Add Account
           .card-body
             .table-responsive.mb-0
-              table#table-accounts.table.table-sm.table-nowrap.card-table
+              table#table-accounts.table.table-sm.card-table
                 thead
                   tr
                     th.text-white(data-field='address' data-formatter='nameFormatter')
@@ -99,4 +61,4 @@
                       | Balance
                     th.text-right(data-field='action')
                       | Action
-                tbody.list  
+                tbody.text-center
