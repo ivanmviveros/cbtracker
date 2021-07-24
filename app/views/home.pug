@@ -45,14 +45,14 @@ main.page-wrapper
           .card-body
             .table-responsive.mb-0
               table#table-accounts.table.table-sm.card-table
-                thead
+                thead.text-center
                   tr
                     th.text-white(data-field='address' data-formatter='nameFormatter')
                       | Name
                     th.text-white(data-field='address')
                       | Address
                     th.text-white(data-field='characters' data-formatter='charFormatter')
-                      | Characters
+                      | Characters (ID | Level | Element | Unclaimed Exp | Stamina)
                     th.text-white(data-field='unclaimed' data-formatter='currFormatter')
                       | Unclaimed Skills
                     th.text-white(data-field='rewards' data-formatter='currFormatter')

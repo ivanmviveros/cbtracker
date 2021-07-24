@@ -3,8 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  web3, isAddress, getStakedBalance, getStakedRewards, getAccountCharacters, getAccountSkillReward, getCharacterExp, getCharacterStamina,
+  web3, isAddress, getStakedBalance, getStakedRewards, getAccountCharacters, getAccountSkillReward, getCharacterExp, getCharacterStamina, getCharacterData,
 } = require('../helpers/web3');
+
+const { characterFromContract } = require('../helpers/utils');
 
 
 router.get('/', (req, res, next) => {
@@ -29,10 +31,13 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
     const chars = await Promise.all(accChars.map(async (charId) => {
       const exp = await getCharacterExp(address, charId);
       const sta = await getCharacterStamina(charId);
+      const charData = characterFromContract(charId, await getCharacterData(address, charId));
       return {
         charId,
         exp,
         sta,
+        level: charData.level,
+        element: charData.traitName,
       };
     }));
     return {
