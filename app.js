@@ -46,8 +46,8 @@ app.use((err, req, res, next) => {
 });
 
 // db.on('connected', () => {
-app.listen(config.server.port, config.server.hostname, () => {
-  debug(`App listening on ${config.server.hostname} port: ${config.server.port}`);
+app.listen(config.server.port, () => {
+  debug(`App listening on port: ${config.server.port}`);
   app.emit('appStarted');
 });
 // });
