@@ -1,0 +1,19 @@
+#modal-add-account.modal.fade(tabindex='-1' role='dialog' style='display: none;' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-card.card
+        .card-header
+          .row.align-items-center
+            .col
+              h4#modalCenterTitle.card-header-title
+                | Add a account
+            .col-auto
+              button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+        .card-body
+            form
+              .form-group  
+                input#inp-name.form-control.form-control(type='text' placeholder='Account Name')
+              .form-group  
+                input#inp-address.form-control.form-control(type='text' placeholder='Address')
+              button.btn.btn-primary.float-right(type='button' onclick='add_account()') Add

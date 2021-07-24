@@ -12,9 +12,7 @@ rules:
   indent:
     - error
     - 2
-  linebreak-style:
-    - error
-    - unix
+  linebreak-style: 0
   quotes:
     - error
     - single
@@ -29,3 +27,7 @@ rules:
     - always
   import/no-unresolved: 0
   no-console: 0
+  no-param-reassign: 0
+  radix: 0
+  max-len: 0
+  no-bitwise: 0

@@ -12,7 +12,7 @@ const debug = require('debug')('myapp:app');
 const config = require('./config/config');
 
 // database config
-const db = require('./config/db');
+// const db = require('./config/db');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'app/views'));
@@ -45,11 +45,11 @@ app.use((err, req, res, next) => {
   res.render('error');
 });
 
-db.on('connected', () => {
-  app.listen(config.server.port, config.server.hostname, () => {
-    debug(`App listening on ${config.server.hostname} port: ${config.server.port}`);
-    app.emit('appStarted');
-  });
+// db.on('connected', () => {
+app.listen(config.server.port, config.server.hostname, () => {
+  debug(`App listening on ${config.server.hostname} port: ${config.server.port}`);
+  app.emit('appStarted');
 });
+// });
 
 module.exports = app;

@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "dev": "gulp",
     "test": "mocha -R spec ./test/*.js",
     "lint": "eslint ./ || exit 0",
@@ -23,7 +23,8 @@
     "mongoose": "^4.13.1",
     "morgan": "^1.9.0",
     "pug": "^2.0.0-rc.4",
-    "serve-favicon": "^2.4.5"
+    "serve-favicon": "^2.4.5",
+    "web3": "^1.4.0"
   },
   "devDependencies": {
     "browser-sync": "^2.18.7",
