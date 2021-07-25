@@ -66,7 +66,7 @@ function populate_cards(result) {
 
 function charFormatter(val) {
     return val.map(char => {
-        return `${char.charId} | ${char.level} | ${char.element} | ${char.exp} | (${char.sta}/200)`
+        return `${char.charId} | ${char.level} | ${char.element} | ${char.exp} | ${char.nextLevel} (${char.nextExp} left) | (${char.sta}/200)`
     }).join('<br>')
 }
 

@@ -6,7 +6,7 @@ const {
   web3, isAddress, getStakedBalance, getStakedRewards, getStakedTimeLeft, getAccountCharacters, getAccountSkillReward, getCharacterExp, getCharacterStamina, getCharacterData,
 } = require('../helpers/web3');
 
-const { characterFromContract, secondsToDDHHMMSS } = require('../helpers/utils');
+const { characterFromContract, secondsToDDHHMMSS, getNextTargetExpLevel } = require('../helpers/utils');
 
 
 router.get('/', (req, res, next) => {
@@ -33,11 +33,15 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
       const exp = await getCharacterExp(address, charId);
       const sta = await getCharacterStamina(charId);
       const charData = characterFromContract(charId, await getCharacterData(address, charId));
+      const nextTargetExpLevel = getNextTargetExpLevel(charData.level);
       return {
         charId,
         exp,
         sta,
-        level: charData.level,
+        nextLevel: nextTargetExpLevel.level + 1,
+        nextExp: nextTargetExpLevel.exp,
+        mustClaim: (exp <= 0),
+        level: charData.level + 1,
         element: charData.traitName,
       };
     }));
