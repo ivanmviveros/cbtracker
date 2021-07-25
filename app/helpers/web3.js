@@ -25,6 +25,7 @@ const Weapons = new web3.eth.Contract(conWeapons.abi, weapAddress);
 
 const getStakedBalance = async address => StakingToken.methods.balanceOf(address).call({ from: defaultAddress });
 const getStakedRewards = async address => StakingReward.methods.balanceOf(address).call({ from: defaultAddress });
+const getStakedTimeLeft = async address => StakingReward.methods.getStakeUnlockTimeLeft().call({ from: address });
 const getAccountCharacters = async address => CryptoBlades.methods.getMyCharacters().call({ from: address });
 const getAccountSkillReward = async address => CryptoBlades.methods.getTokenRewards().call({ from: address });
 const getCharacterExp = async (address, charId) => CryptoBlades.methods.getXpRewards(`${charId}`).call({ from: address });
@@ -41,6 +42,7 @@ module.exports = {
   Weapons,
   getStakedBalance,
   getStakedRewards,
+  getStakedTimeLeft,
   getAccountCharacters,
   getAccountSkillReward,
   getCharacterExp,

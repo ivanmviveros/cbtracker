@@ -74,6 +74,10 @@ function currFormatter(val) {
     return parseFloat(val).toFixed(6)
 }
 
+function unclaimedFormatter(val, row) {
+    return `${parseFloat(val).toFixed(6)} (${row.timeLeft})`
+}
+
 function nameFormatter(val) {
     return storeNames[val]
 }

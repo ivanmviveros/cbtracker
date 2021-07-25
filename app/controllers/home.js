@@ -3,10 +3,10 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  web3, isAddress, getStakedBalance, getStakedRewards, getAccountCharacters, getAccountSkillReward, getCharacterExp, getCharacterStamina, getCharacterData,
+  web3, isAddress, getStakedBalance, getStakedRewards, getStakedTimeLeft, getAccountCharacters, getAccountSkillReward, getCharacterExp, getCharacterStamina, getCharacterData,
 } = require('../helpers/web3');
 
-const { characterFromContract } = require('../helpers/utils');
+const { characterFromContract, secondsToDDHHMMSS } = require('../helpers/utils');
 
 
 router.get('/', (req, res, next) => {
@@ -27,6 +27,7 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
     const accChars = await getAccountCharacters(address);
     const balance = await getStakedBalance(address);
     const rewards = await getStakedRewards(address);
+    const timeLeft = await getStakedTimeLeft(address);
     const skills = await getAccountSkillReward(address);
     const chars = await Promise.all(accChars.map(async (charId) => {
       const exp = await getCharacterExp(address, charId);
@@ -45,6 +46,7 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
       unclaimed: web3.utils.fromWei(`${skills}`, 'ether'),
       balance: web3.utils.fromWei(`${balance}`, 'ether'),
       rewards: web3.utils.fromWei(`${rewards}`, 'ether'),
+      timeLeft: secondsToDDHHMMSS(timeLeft),
       characters: chars,
       action: `<button type="button" class="btn btn-danger btn-sm" onclick="remove('${address}')">Remove</button>`,
     };

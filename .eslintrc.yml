@@ -31,3 +31,4 @@ rules:
   radix: 0
   max-len: 0
   no-bitwise: 0
+  no-mixed-operators: 0

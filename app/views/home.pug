@@ -1,7 +1,7 @@
 main.page-wrapper
   .position-relative.zindex-5.pb-4.mb-md-3.mx-5(style='margin-top: 20px;')
     .row.mx-n2.py-2
-      .col-md-3.col-sm-6.px-2
+      .col-md-8.col-sm-6.px-2
         h1.fs-sm.fw-medium Crypto Blades Tracker
     .row.mx-n2.py-2
       .col-md-3.col-sm-6.px-2.mb-3
@@ -53,12 +53,12 @@ main.page-wrapper
                       | Address
                     th.text-white(data-field='characters' data-formatter='charFormatter')
                       | Characters (ID | Level | Element | Unclaimed Exp | Stamina)
-                    th.text-white(data-field='unclaimed' data-formatter='currFormatter')
+                    th.text-white(data-field='unclaimed' data-formatter='unclaimedFormatter')
                       | Unclaimed Skills
                     th.text-white(data-field='rewards' data-formatter='currFormatter')
                       | Staked Skills
                     th.text-white(data-field='balance' data-formatter='currFormatter')
                       | Balance
-                    th.text-right(data-field='action')
+                    th.text-white(data-field='action')
                       | Action
                 tbody.text-center

@@ -9,7 +9,8 @@
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "gulp",
+    "dev": "nodemon app.js",
+    "gulp": "gulp",
     "test": "mocha -R spec ./test/*.js",
     "lint": "eslint ./ || exit 0",
     "lint-fix": "eslint ./ --fix || exit 0"
