@@ -1,5 +1,7 @@
 var accounts = localStorage.getItem('accounts')
 var names = localStorage.getItem('names')
+var hideAddress = localStorage.getItem('hideAddress')
+
 var storeAccounts = []
 var storeNames = {}
 if (accounts && names) {
@@ -34,7 +36,7 @@ function add_account() {
             $('#modal-add-account').modal('hide');
             storeAccounts.push(address)
             storeNames[address] = name
-            reload_data()            
+            reload_data()
         }
     })
 }
@@ -82,6 +84,11 @@ function nameFormatter(val) {
     return storeNames[val]
 }
 
+function privacyFormatter(val) {
+    if (hideAddress) return addressPrivacy(val)
+    return val
+}
+
 function getSkillPrice() {
     $.get('https://api.coingecko.com/api/v3/simple/price?ids=cryptoblades,binancecoin&vs_currencies=php', (result) => {
         skillPrice = result.cryptoblades.php
@@ -96,5 +103,34 @@ function convertSkill(value) {
 function remove(address) {
     storeAccounts.splice(storeAccounts.indexOf(address), 1)
     delete storeNames[address]
+    reload_data()
+}
+
+function addressPrivacy(address) {
+    return `${address.substr(0, 6)}...${address.substr(-4, 4)}`
+}
+
+if (hideAddress) {
+    $('#btn-privacy').prop('checked', true)
+} else {
+    $('#btn-privacy').removeAttr('checked')
+}
+
+$('#btn-privacy').on('change' , (e) => {
+    if (e.currentTarget.checked) {
+        togglePrivacy(true)
+    } else {
+        togglePrivacy(false)
+    }
+})
+
+function togglePrivacy (hide) {
+    if (hide) {
+        hideAddress = true
+        localStorage.setItem('hideAddress', true)
+    } else {
+        hideAddress = false
+        localStorage.setItem('hideAddress', false)
+    }
     reload_data()
 }
