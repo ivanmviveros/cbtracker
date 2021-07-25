@@ -23,6 +23,7 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
   const { data } = req.params;
   if (!data) return res.status(500).json({ error: 'No data provided.' });
   const accounts = JSON.parse(Buffer.from(data, 'base64').toString('ascii'));
+  if (!accounts) return res.json([]);
   const results = await Promise.all(accounts.map(async (address) => {
     const accChars = await getAccountCharacters(address);
     const balance = await getStakedBalance(address);
