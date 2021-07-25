@@ -40,7 +40,7 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
         exp,
         sta,
         nextLevel: nextTargetExpLevel.level + 1,
-        nextExp: (nextTargetExpLevel.exp - charData.exp),
+        nextExp: nextTargetExpLevel.exp - parseInt(charData.xp),
         mustClaim: (exp <= 0),
         level: charData.level + 1,
         element: charData.traitName,
