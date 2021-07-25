@@ -74,7 +74,7 @@ function currFormatter(val) {
     return parseFloat(val).toFixed(6)
 }
 
-function unclaimedFormatter(val, row) {
+function stakedFormatter(val, row) {
     return `${parseFloat(val).toFixed(6)} (${row.timeLeft})`
 }
 
