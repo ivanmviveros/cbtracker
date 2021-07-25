@@ -274,7 +274,7 @@ const experienceTable = [
 function getNextTargetExpLevel(level) {
   const next = (Math.floor(level / 10) + 1) * 10;
   let exp = 0;
-  for (let i = level; i < next; i++) {
+  for (let i = level; i <= next; i++) {
     exp += experienceTable[i];
   }
   return {
