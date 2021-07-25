@@ -31,6 +31,7 @@ const getAccountSkillReward = async address => CryptoBlades.methods.getTokenRewa
 const getCharacterExp = async (address, charId) => CryptoBlades.methods.getXpRewards(`${charId}`).call({ from: address });
 const getCharacterStamina = async charId => Characters.methods.getStaminaPoints(`${charId}`).call({ from: defaultAddress });
 const getCharacterData = async (address, charId) => Characters.methods.get(`${charId}`).call({ from: address });
+const getBNBBalance = async address => web3.eth.getBalance(address);
 
 module.exports = {
   web3,
@@ -48,4 +49,5 @@ module.exports = {
   getCharacterExp,
   getCharacterStamina,
   getCharacterData,
+  getBNBBalance,
 };

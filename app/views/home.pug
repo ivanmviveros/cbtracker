@@ -4,10 +4,11 @@ main.page-wrapper
       .col-md-8.col-sm-6.px-2
         h1.fs-sm.fw-medium Crypto Blades Tracker        
       .col-md-4.col-sm-6.px-2
+        .float-right          
+          select#select-currency.form-control
         .checkbox.float-right
           label
             input#btn-privacy(type='checkbox' data-toggle='toggle')
-            | Hide Address
     .row.mx-n2.py-2
       .col-md-3.col-sm-6.px-2.mb-3
         .card.bg-secondary.h-100.rounded-3.p-4.text-center
@@ -63,7 +64,9 @@ main.page-wrapper
                     th.text-white(data-field='rewards' data-formatter='stakedFormatter')
                       | Staked Skills
                     th.text-white(data-field='balance' data-formatter='currFormatter')
-                      | Balance
+                      | Skills in Wallet
+                    th.text-white(data-field='bnb' data-formatter='currFormatter')
+                      | BNB
                     th.text-white(data-field='action')
                       | Action
                 tbody.text-center

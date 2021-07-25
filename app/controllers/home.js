@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 
 const {
-  web3, isAddress, getStakedBalance, getStakedRewards, getStakedTimeLeft, getAccountCharacters, getAccountSkillReward, getCharacterExp, getCharacterStamina, getCharacterData,
+  web3, isAddress, getStakedBalance, getStakedRewards, getStakedTimeLeft, getBNBBalance, getAccountCharacters, getAccountSkillReward, getCharacterExp, getCharacterStamina, getCharacterData,
 } = require('../helpers/web3');
 
 const { characterFromContract, secondsToDDHHMMSS, getNextTargetExpLevel } = require('../helpers/utils');
@@ -25,6 +25,7 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
   const accounts = JSON.parse(Buffer.from(data, 'base64').toString('ascii'));
   if (!accounts) return res.json([]);
   const results = await Promise.all(accounts.map(async (address) => {
+    const bnbBalance = await getBNBBalance(address);
     const accChars = await getAccountCharacters(address);
     const balance = await getStakedBalance(address);
     const rewards = await getStakedRewards(address);
@@ -48,12 +49,13 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
     }));
     return {
       address,
+      bnb: web3.utils.fromWei(`${bnbBalance}`, 'ether'),
       unclaimed: web3.utils.fromWei(`${skills}`, 'ether'),
       balance: web3.utils.fromWei(`${balance}`, 'ether'),
       rewards: web3.utils.fromWei(`${rewards}`, 'ether'),
       timeLeft: secondsToDDHHMMSS(timeLeft),
       characters: chars,
-      action: `<button type="button" class="btn btn-danger btn-sm" onclick="remove('${address}')">Remove</button>`,
+      action: `<button type="button" class="btn btn-success btn-sm" onclick="rename('${address}')">Rename</button> <button type="button" class="btn btn-danger btn-sm" onclick="remove('${address}')">Remove</button>`,
     };
   }));
 

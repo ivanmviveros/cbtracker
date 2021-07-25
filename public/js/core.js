@@ -1,6 +1,11 @@
 var accounts = localStorage.getItem('accounts')
 var names = localStorage.getItem('names')
-var hideAddress = localStorage.getItem('hideAddress')
+var hideAddress = (localStorage.getItem('hideAddress') === 'true')
+var currCurrency = localStorage.getItem('currency')
+var currencies = ['usd', 'php']
+
+if (!currCurrency) currCurrency = 'usd'
+populate_currency()
 
 var storeAccounts = []
 var storeNames = {}
@@ -16,6 +21,16 @@ getSkillPrice()
 
 $table.bootstrapTable('showLoading')
 retrieve_account()
+
+function populate_currency() {
+    $('#select-currency').html();
+    $("#select-currency").append(new Option(currCurrency.toUpperCase(), currCurrency));
+    currencies.forEach(curr => {
+        if(currCurrency !== curr) {
+            $("#select-currency").append(new Option(curr.toUpperCase(), curr));
+        }
+    })
+}
 
 function retrieve_account() {
     if (storeAccounts) {
@@ -39,6 +54,14 @@ function add_account() {
             reload_data()
         }
     })
+}
+
+function rename_account() {
+    var address = $('#inp-readdress').val().trim()
+    var name = $('#inp-rename').val().trim()
+    $('#modal-rename-account').modal('hide');
+    storeNames[address] = name
+    reload_data()
 }
 
 function reload_data() {
@@ -90,20 +113,29 @@ function privacyFormatter(val) {
 }
 
 function getSkillPrice() {
-    $.get('https://api.coingecko.com/api/v3/simple/price?ids=cryptoblades,binancecoin&vs_currencies=php', (result) => {
-        skillPrice = result.cryptoblades.php
-        $('#card-price').html(skillPrice.toLocaleString('en-PH', { style: 'currency', currency: 'PHP' }))
+    $.get(`https://api.coingecko.com/api/v3/simple/price?ids=cryptoblades,binancecoin&vs_currencies=${currencies.join(',')}`, (result) => {
+        skillPrice = result.cryptoblades[currCurrency]
+        $('#card-price').html(skillPrice.toLocaleString('en-US', { style: 'currency', currency: currCurrency.toUpperCase() }))
     })
 }
 
 function convertSkill(value) {
-    return `${parseFloat(value).toFixed(6)} (${(parseFloat(value) * parseFloat(skillPrice)).toLocaleString('en-PH', { style: 'currency', currency: 'PHP' })})`
+    return `${parseFloat(value).toFixed(6)} (${(parseFloat(value) * parseFloat(skillPrice)).toLocaleString('en-US', { style: 'currency', currency: currCurrency.toUpperCase() })})`
 }
 
 function remove(address) {
     storeAccounts.splice(storeAccounts.indexOf(address), 1)
     delete storeNames[address]
     reload_data()
+}
+
+function rename(address) {
+    $('#inp-rename').val(storeNames[address])
+    $('#inp-readdress').val(address)
+    $('#modal-rename-account').modal({
+        backdrop: 'static',
+        keyboard: false
+    })
 }
 
 function addressPrivacy(address) {
@@ -122,6 +154,13 @@ $('#btn-privacy').on('change' , (e) => {
     } else {
         togglePrivacy(false)
     }
+})
+
+$("#select-currency").on('change', (e) => {
+    currCurrency = e.currentTarget.value
+    localStorage.setItem('currency', currCurrency)    
+    getSkillPrice()
+    reload_data()
 })
 
 function togglePrivacy (hide) {

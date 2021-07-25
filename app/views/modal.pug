@@ -17,3 +17,21 @@
               .form-group  
                 input#inp-address.form-control.form-control(type='text' placeholder='Address')
               button.btn.btn-primary.float-right(type='button' onclick='add_account()') Add
+#modal-rename-account.modal.fade(tabindex='-1' role='dialog' style='display: none;' aria-hidden='true')
+  .modal-dialog.modal-dialog-centered(role='document')
+    .modal-content
+      .modal-card.card.bg-secondary
+        .card-header
+          .row.align-items-center
+            .col
+              h4#modalCenterTitle.card-header-title
+                | Rename account
+            .col-auto
+              button.close(type='button' data-dismiss='modal' aria-label='Close')
+                span(aria-hidden='true') &times;
+        .card-body
+            form
+              .form-group  
+                input#inp-rename.form-control.form-control(type='text' placeholder='Account Name')
+                input#inp-readdress(type='hidden')
+              button.btn.btn-primary.float-right(type='button' onclick='rename_account()') Save
