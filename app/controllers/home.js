@@ -10,7 +10,7 @@ const { characterFromContract, secondsToDDHHMMSS, getNextTargetExpLevel } = requ
 
 
 router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Crypto Blades Tracker' });
+  res.render('index', { title: 'CryptoBlades Tracker' });
 });
 
 router.get('/account/add/:address', (req, res, next) => {
