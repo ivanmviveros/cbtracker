@@ -1,4 +1,4 @@
-Crypto Blades Tracker
+CryptoBlades Tracker
 ==================================
 
 ## Related modules
