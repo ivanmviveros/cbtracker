@@ -77,13 +77,14 @@ function reload_data() {
 }
 
 function populate_cards(result) {
-    let uskills = 0, sskills = 0, balance = 0
+    let uskills = 0, sskills = 0, balance = 0, chars = 0
     result.forEach(data => {
         uskills += parseFloat(data.unclaimed)
         sskills += parseFloat(data.rewards)
         balance += parseFloat(data.balance)
+        chars += data.characters.length
     })    
-    $('#card-acc').html(result.length)
+    $('#card-acc').html(`${result.length}${(chars > 0) ? ` (${chars} Characters)` : ''} `)
     $('#card-uskills').html(convertSkill(uskills))
     $('#card-sskills').html(convertSkill(sskills))
     $('#card-balance').html(convertSkill(balance))
@@ -120,7 +121,7 @@ function getSkillPrice() {
 }
 
 function convertSkill(value) {
-    return `${parseFloat(value).toFixed(6)} (${(parseFloat(value) * parseFloat(skillPrice)).toLocaleString('en-US', { style: 'currency', currency: currCurrency.toUpperCase() })})`
+    return (parseFloat(value) > 0 ? `${parseFloat(value).toFixed(6)} (${(parseFloat(value) * parseFloat(skillPrice)).toLocaleString('en-US', { style: 'currency', currency: currCurrency.toUpperCase() })})` : 0)
 }
 
 function remove(address) {
