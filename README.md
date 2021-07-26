@@ -1,8 +1,5 @@
-Express MVC Boilerplate
+Crypto Blades Tracker
 ==================================
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.org/oguzhanoya/express-mvc-boilerplate.svg?branch=master)](https://travis-ci.org/oguzhanoya/express-mvc-boilerplate)
-
-> A simple mvc boilerplate for express.js (gulp + expressjs + nodemon + browser-sync)
 
 ## Related modules
 
@@ -60,8 +57,8 @@ The easiest way to get started is to clone the repository:
 
 ```sh
 # Get the latest snapshot
-$ git clone https://github.com/oguzhanoya/express-mvc-boilerplate.git myproject
-$ cd myproject
+$ git clone https://github.com/ed3ath/cbtracker
+$ cd cbtracker
 
 # Install dependencies
 $ npm install
@@ -74,7 +71,7 @@ $ node app.js
 
     npm run dev
     
-Your app should now be running on [localhost:7000](http://localhost:7000/).
+Your app should now be running on [localhost:3000](http://localhost:3000/).
 
 ## Test
 
