@@ -91,7 +91,7 @@ function populate_cards(result) {
 
 function charFormatter(val) {
     return val.map(char => {
-        return `${char.charId} | ${char.level} | ${char.element} | ${char.exp} | ${char.nextLevel} ${((char.nextExp > 0 ? `${char.nextExp} exp left` : 'Claim Exp'))} | (${char.sta}/200)`
+        return `${char.charId} | ${char.level} | ${char.element} | ${char.exp} | ${char.nextLevel} (${(char.nextExp > 0 ? `${char.nextExp} exp left` : 'Claim Exp')}) | (${char.sta}/200)`
     }).join('<br>')
 }
 
