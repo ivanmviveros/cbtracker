@@ -53,7 +53,7 @@ router.get('/account/retrieve/:data', async (req, res, next) => {
       unclaimed: web3.utils.fromWei(`${skills}`, 'ether'),
       balance: web3.utils.fromWei(`${balance}`, 'ether'),
       rewards: web3.utils.fromWei(`${rewards}`, 'ether'),
-      timeLeft: (timeLeft ? secondsToDDHHMMSS(timeLeft) : 'Claimable'),
+      timeLeft: secondsToDDHHMMSS(timeLeft),
       characters: chars,
       action: `<button type="button" class="btn btn-success btn-sm" onclick="rename('${address}')">Rename</button> <button type="button" class="btn btn-danger btn-sm" onclick="remove('${address}')">Remove</button>`,
     };

@@ -100,7 +100,7 @@ function currFormatter(val) {
 }
 
 function stakedFormatter(val, row) {
-    return `${parseFloat(val).toFixed(6)} (${row.timeLeft})`
+    return `${parseFloat(val).toFixed(6)}${(row.timeLeft ? `(${row.timeLeft})` : '')}`
 }
 
 function nameFormatter(val) {
