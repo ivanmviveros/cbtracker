@@ -130,6 +130,43 @@ function remove(address) {
     reload_data()
 }
 
+function simulate(address, data) {
+    const { characters, weapons } = JSON.parse(window.atob(data))
+    $('#combat-name').val(storeNames[address])
+    $('#combat-address').val(address)
+    $('#combat-character').html(new Option('Select character', ''))
+    $('#combat-weapon').html(new Option('Select weapon', ''))
+    characters.forEach(character => {
+        $("#combat-character").append(new Option(`${character.charId} | ${character.element} | Lv. ${character.level}`, character.charId));
+    })
+    weapons.forEach(weapon => {
+        $("#combat-weapon").append(new Option(`${weapon.id} | ${weapon.stars + 1}-star ${weapon.element}`, weapon.id));
+    })
+    $('#modal-combat').modal({
+        backdrop: 'static',
+        keyboard: false
+    })
+}
+
+function combat_simulate() {
+    $('#btn-simulate').prop('disabled', true)
+    const address = $('#combat-address').val()
+    const weapId = $('#combat-weapon').val()
+    const charId = $('#combat-character').val()
+    $('#combat-result').html('Generating results...')
+    $.get(`/simulate/${address}/${charId}/${weapId}`, (result, err) => {
+        if (result.error) $('#combat-result').html(result.error)
+        else {
+            let tmpResult = '';
+            result.forEach((data, i) => {
+                tmpResult += `Enemy ${i+1} | ${data.enemy.element} | ${data.enemy.power} | ${parseFloat(data.chance * 100).toFixed(2)}%<br>`
+            })
+            $('#combat-result').html(tmpResult)
+        }
+        $('#btn-simulate').removeAttr('disabled')
+    })
+}
+
 function rename(address) {
     $('#inp-rename').val(storeNames[address])
     $('#inp-readdress').val(address)

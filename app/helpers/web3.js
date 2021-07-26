@@ -1,6 +1,6 @@
 const Web3 = require('web3');
 
-const web3 = new Web3('https://bsc-dataseed.binance.org/');
+const web3 = new Web3('https://bsc-dataseed2.defibit.io/');
 
 const isAddress = address => web3.utils.isAddress(address);
 
@@ -27,11 +27,14 @@ const getStakedBalance = async address => StakingToken.methods.balanceOf(address
 const getStakedRewards = async address => StakingReward.methods.balanceOf(address).call({ from: defaultAddress });
 const getStakedTimeLeft = async address => StakingReward.methods.getStakeUnlockTimeLeft().call({ from: address });
 const getAccountCharacters = async address => CryptoBlades.methods.getMyCharacters().call({ from: address });
+const getAccountWeapons = async address => CryptoBlades.methods.getMyWeapons().call({ from: address });
 const getAccountSkillReward = async address => CryptoBlades.methods.getTokenRewards().call({ from: address });
 const getCharacterExp = async (address, charId) => CryptoBlades.methods.getXpRewards(`${charId}`).call({ from: address });
 const getCharacterStamina = async charId => Characters.methods.getStaminaPoints(`${charId}`).call({ from: defaultAddress });
 const getCharacterData = async (address, charId) => Characters.methods.get(`${charId}`).call({ from: address });
+const getWeaponData = async (address, weapId) => Weapons.methods.get(`${weapId}`).call({ from: address });
 const getBNBBalance = async address => web3.eth.getBalance(address);
+const characterTargets = async (address, charId, weapId) => CryptoBlades.methods.getTargets(charId, weapId).call({ from: address });
 
 module.exports = {
   web3,
@@ -45,9 +48,12 @@ module.exports = {
   getStakedRewards,
   getStakedTimeLeft,
   getAccountCharacters,
+  getAccountWeapons,
   getAccountSkillReward,
   getCharacterExp,
   getCharacterStamina,
   getCharacterData,
+  getWeaponData,
   getBNBBalance,
+  characterTargets,
 };

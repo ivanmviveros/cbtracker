@@ -186,7 +186,7 @@ function getWinChance(charData, weapData, enemyPower, enemyElement) {
   const enemyRange = enemyMax - enemyMin;
   let rollingTotal = 0;
   // shortcut: if it is impossible for one side to win, just say so
-  if (playerMin > enemyMax) return 3;
+  //if (playerMin > enemyMax) return 3;
   if (playerMax < enemyMin) return 0;
 
   // case 1: player power is higher than enemy power
@@ -207,6 +207,7 @@ function getWinChance(charData, weapData, enemyPower, enemyElement) {
     // since this is chance the enemy wins, we negate it
     rollingTotal = 1 - rollingTotal;
   }
+  return rollingTotal
   if (rollingTotal <= 0.3) return 0;
   if (rollingTotal <= 0.5) return 1;
   if (rollingTotal <= 0.7) return 2;
@@ -283,6 +284,25 @@ function getNextTargetExpLevel(level) {
   };
 }
 
+function getPotentialXp(characterPower, enemyPower, trait, weaponData) {
+  const playerElement = parseInt(trait, 10);
+  const weaponMultiplier = GetTotalMultiplierForTrait(weaponData, playerElement);
+  const totalPower = ((characterPower * weaponMultiplier) + weaponData.bonusPower);
+
+  return Math.floor((enemyPower / totalPower) * this.fightXpGain);
+}
+
+function getEnemyDetails(targets)  {
+  return targets.map(data => {
+    const n = parseInt(data, 10)
+    return {
+      original: data,
+      power: n & 0b11111111_11111111_11111111,
+      trait: n >> 24
+    }
+  })
+}
+
 
 module.exports = {
   randomString,
@@ -293,4 +313,6 @@ module.exports = {
   formatDurationFromSeconds,
   secondsToDDHHMMSS,
   getNextTargetExpLevel,
+  getPotentialXp,
+  getEnemyDetails,
 };
