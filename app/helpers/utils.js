@@ -297,7 +297,7 @@ function getEnemyDetails(targets)  {
     const n = parseInt(data, 10)
     return {
       original: data,
-      power: n & 0b11111111_11111111_11111111,
+      power: n & 0,
       trait: n >> 24
     }
   })
